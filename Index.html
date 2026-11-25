@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisionFlow AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b0b12;color:#fff;font-family:Arial,sans-serif}
+header{padding:18px 5%;border-bottom:1px solid #292936;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:bold;color:#a78bfa}
+button{cursor:pointer;border:0;border-radius:10px;padding:12px 17px;background:#7c3aed;color:white;font-weight:bold}
+button:hover{opacity:.85}
+.container{max-width:1000px;margin:auto;padding:30px 18px}
+h1{font-size:32px;margin-bottom:10px}
+.subtitle{color:#aaa;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:#15151f;border:1px solid #30303c;border-radius:16px;padding:20px}
+label{display:block;margin:16px 0 8px;color:#ccc}
+textarea,input,select{width:100%;background:#0d0d16;border:1px solid #353543;color:white;padding:12px;border-radius:9px}
+textarea{min-height:120px;resize:vertical}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+.generate{width:100%;margin-top:20px;padding:15px;background:linear-gradient(90deg,#7c3aed,#4f46e5);font-size:16px}
+.preview{height:230px;background:#090910;border:1px dashed #444;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:#aaa;margin-top:15px;padding:15px}
+small{color:#999}
+h2{font-size:18px;margin-bottom:10px}
+footer{text-align:center;color:#777;padding:30px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}h1{font-size:27px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">✦ VisionFlow AI</div>
+<button onclick="settings()">API Settings</button>
+</header>
+
+<div class="container">
+<h1>Create AI Videos</h1>
+<p class="subtitle">Turn your imagination into cinematic videos.</p>
+
+<div class="grid">
+<div class="card">
+<h2>Video Studio</h2>
+
+<label>Describe your video</label>
+<textarea id="prompt" placeholder="Describe the video you want to create..."></textarea>
+
+<label>Video type</label>
+<select id="type">
+<option>Text to Video</option>
+<option>Image to Video</option>
+</select>
+
+<label>Aspect ratio</label>
+<select id="ratio">
+<option>16:9 Landscape</option>
+<option>9:16 Portrait</option>
+<option>1:1 Square</option>
+</select>
+
+<div class="row">
+<div>
+<label>Quality</label>
+<select id="quality">
+<option>720p</option>
+<option>1080p</option>
+<option>4K</option>
+</select>
+</div>
+<div>
+<label>Duration</label>
+<select id="duration">
+<option>5 seconds</option>
+<option>10 seconds</option>
+<option>15 seconds</option>
+<option>30 seconds</option>
+</select>
+</div>
+</div>
+
+<label>Upload image (optional)</label>
+<input type="file" id="image" accept="image/*">
+
+<label>Voice narration</label>
+<select id="voice">
+<option>None</option>
+<option>Female voice</option>
+<option>Male voice</option>
+<option>Natural narrator</option>
+</select>
+
+<label>Narration text</label>
+<textarea id="narration" placeholder="Enter narration (optional)" style="min-height:75px"></textarea>
+
+<button class="generate" onclick="generate()">✦ Generate Video</button>
+</div>
+
+<div class="card">
+<h2>Preview</h2>
+<div class="preview" id="preview">
+Your generated video will appear here.<br><br>
+Connect a video-generation API to enable generation.
+</div>
+<label>Generation status</label>
+<p id="status" style="color:#a78bfa">Ready</p>
+<br>
+<h2>My Creations</h2>
+<p style="color:#999">Your videos will appear here.</p>
+</div>
+</div>
+
+<footer>VisionFlow AI · AI Video Creation Studio</footer>
+
+<script>
+function generate(){
+ const prompt=document.getElementById('prompt').value.trim();
+ if(!prompt){
+  alert("Please enter a video prompt first.");
+  return;
+ }
+ document.getElementById('status').textContent="API not connected";
+ document.getElementById('preview').innerHTML=
+ "Your prompt is ready!<br><br>"+prompt+
+ "<br><br>Connect a video-generation API to generate the actual video.";
+ alert("Your website interface is working! Video generation requires connecting an AI provider API.");
+}
+function settings(){
+ alert("API integrations will be configured through secure backend environment variables after deployment. Do not paste secret API keys into this page.");
+}
+</script>
+</body>
+  </html>
